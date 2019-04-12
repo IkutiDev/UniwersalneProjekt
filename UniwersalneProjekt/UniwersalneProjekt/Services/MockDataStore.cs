@@ -6,61 +6,61 @@ using UniwersalneProjekt.Models;
 
 namespace UniwersalneProjekt.Services
 {
-    public class MockDataStore : IDataStore<Item>
+    public class MockDataStore : IDataStore<Category>
     {
-        List<Item> items;
+        List<Category> categories;
 
         public MockDataStore()
         {
-            items = new List<Item>();
-            var mockItems = new List<Item>
+            categories = new List<Category>();
+            var mockCategories = new List<Category>
             {
-                new Item { Id = Guid.NewGuid().ToString(), Handle = "First item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Handle = "Second item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Handle = "Third item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Handle = "Fourth item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Handle = "Fifth item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Handle = "Sixth item", Description="This is an item description." },
+                new Category { Id = Guid.NewGuid().ToString(), Name = "First item", Questions=new List<Question>() },
+                new Category { Id = Guid.NewGuid().ToString(), Name = "Second item", Questions=new List<Question>() },
+                new Category { Id = Guid.NewGuid().ToString(), Name = "Third item", Questions=new List<Question>() },
+                new Category { Id = Guid.NewGuid().ToString(), Name = "Fourth item", Questions=new List<Question>() },
+                new Category { Id = Guid.NewGuid().ToString(), Name = "Fifth item", Questions=new List<Question>() },
+                new Category { Id = Guid.NewGuid().ToString(), Name = "Sixth item", Questions=new List<Question>() },
             };
 
-            foreach (var item in mockItems)
+            foreach (var category in mockCategories)
             {
-                items.Add(item);
+                categories.Add(category);
             }
         }
 
-        public async Task<bool> AddItemAsync(Item item)
+        public async Task<bool> AddCategoryAsync(Category category)
         {
-            items.Add(item);
+            categories.Add(category);
 
             return await Task.FromResult(true);
         }
 
-        public async Task<bool> UpdateItemAsync(Item item)
+        public async Task<bool> UpdateCategoryAsync(Category category)
         {
-            var oldItem = items.Where((Item arg) => arg.Id == item.Id).FirstOrDefault();
-            items.Remove(oldItem);
-            items.Add(item);
+            var oldCategory = categories.Where((Category arg) => arg.Id == category.Id).FirstOrDefault();
+            categories.Remove(oldCategory);
+            categories.Add(category);
 
             return await Task.FromResult(true);
         }
 
-        public async Task<bool> DeleteItemAsync(string id)
+        public async Task<bool> DeleteCategoryAsync(string id)
         {
-            var oldItem = items.Where((Item arg) => arg.Id == id).FirstOrDefault();
-            items.Remove(oldItem);
+            var oldCategory = categories.Where((Category arg) => arg.Id == id).FirstOrDefault();
+            categories.Remove(oldCategory);
 
             return await Task.FromResult(true);
         }
 
-        public async Task<Item> GetItemAsync(string id)
+        public async Task<Category> GetCategoryAsync(string id)
         {
-            return await Task.FromResult(items.FirstOrDefault(s => s.Id == id));
+            return await Task.FromResult(categories.FirstOrDefault(s => s.Id == id));
         }
 
-        public async Task<IEnumerable<Item>> GetItemsAsync(bool forceRefresh = false)
+        public async Task<IEnumerable<Category>> GetCategoriesAsync(bool forceRefresh = false)
         {
-            return await Task.FromResult(items);
+            return await Task.FromResult(categories);
         }
     }
 }

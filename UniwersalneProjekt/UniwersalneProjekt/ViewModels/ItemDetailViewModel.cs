@@ -6,11 +6,11 @@ namespace UniwersalneProjekt.ViewModels
 {
     public class ItemDetailViewModel : BaseViewModel
     {
-        public Item Item { get; set; }
-        public ItemDetailViewModel(Item item = null)
+        public Category Category { get; set; }
+        public ItemDetailViewModel(Category category = null)
         {
-            Title = item?.Handle;
-            Item = item;
+            Title = category?.Name;
+            Category = category;
         }
     }
 }
