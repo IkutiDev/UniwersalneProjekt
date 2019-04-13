@@ -9,28 +9,28 @@ using UniwersalneProjekt.ViewModels;
 namespace UniwersalneProjekt.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ItemDetailPage : ContentPage
+    public partial class CategoryDetailPage : ContentPage
     {
-        ItemDetailViewModel viewModel;
+        CategoryDetailViewModel viewModel;
 
-        public ItemDetailPage(ItemDetailViewModel viewModel)
+        public CategoryDetailPage(CategoryDetailViewModel viewModel)
         {
             InitializeComponent();
 
             BindingContext = this.viewModel = viewModel;
         }
 
-        public ItemDetailPage()
+        public CategoryDetailPage()
         {
             InitializeComponent();
 
-            var item = new Item
+            var category = new Category
             {
-                Handle = "Item 1",
-                Description = "This is an item description."
+                Name = "Category 1",
+                Questions = null
             };
 
-            viewModel = new ItemDetailViewModel(item);
+            viewModel = new CategoryDetailViewModel(category);
             BindingContext = viewModel;
         }
     }

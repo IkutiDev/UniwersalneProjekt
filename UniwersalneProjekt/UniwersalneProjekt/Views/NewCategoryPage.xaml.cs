@@ -9,18 +9,18 @@ using UniwersalneProjekt.Models;
 namespace UniwersalneProjekt.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NewItemPage : ContentPage
+    public partial class NewCategoryPage : ContentPage
     {
-        public Item Item { get; set; }
+        public Category Category { get; set; }
 
-        public NewItemPage()
+        public NewCategoryPage()
         {
             InitializeComponent();
 
-            Item = new Item
+            Category = new Category
             {
-                Handle = "Item name",
-                Description = "This is an item description."
+                Name = "Category name",
+                Questions = null
             };
 
             BindingContext = this;
@@ -28,7 +28,7 @@ namespace UniwersalneProjekt.Views
 
         async void Save_Clicked(object sender, EventArgs e)
         {
-            MessagingCenter.Send(this, "AddItem", Item);
+            MessagingCenter.Send(this, "AddCategory", Category);
             await Navigation.PopModalAsync();
         }
 

@@ -27,10 +27,10 @@ namespace UniwersalneProjekt.Views
                 switch (id)
                 {
                     case (int)MenuItemType.Add:
-                        MenuPages.Add(id,new NavigationPage(new AboutPage()));
+                        MenuPages.Add(id,new NavigationPage(new NewCategoryPage()));
                         break;
                     case (int)MenuItemType.Browse:
-                        MenuPages.Add(id, new NavigationPage(new ItemsPage()));
+                        MenuPages.Add(id, new NavigationPage(new CategoriesPage()));
                         break;
                     case (int)MenuItemType.About:
                         MenuPages.Add(id, new NavigationPage(new AboutPage()));

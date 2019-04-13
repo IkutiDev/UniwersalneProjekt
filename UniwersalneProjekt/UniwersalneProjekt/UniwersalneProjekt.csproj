@@ -14,6 +14,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\CategoriesPage.xaml.cs">
+      <DependentUpon>CategoriesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\CategoryDetailPage.xaml.cs">
+      <DependentUpon>CategoryDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\NewCategoryPage.xaml.cs">
+      <DependentUpon>NewCategoryPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Update="Views\AddCategory.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
