@@ -20,13 +20,6 @@ namespace UniwersalneProjekt.ViewModels
             Title = "Browse";
             Categories = new ObservableCollection<Category>();
             LoadCategoriesCommand = new Command(async () => await ExecuteLoadCategoriesCommand());
-
-            MessagingCenter.Subscribe<NewCategoryPage, Category>(this, "AddCategory", async (obj, category) =>
-            {
-                var newCategory = category as Category;
-                Categories.Add(newCategory);
-                await DataStore.AddCategoryAsync(newCategory);
-            });
         }
 
         async Task ExecuteLoadCategoriesCommand()

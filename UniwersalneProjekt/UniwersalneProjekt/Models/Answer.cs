@@ -16,6 +16,7 @@ namespace UniwersalneProjekt.Models
     public class Answer
     {
         public string Id { get; set; }
+        public char AnswerLetter { get; set; }
         public string AnswerText { get; set; }
         public AnswerType AnswerType { get; set; } = AnswerType.Other;
         public bool IsCorrect { get; set; } = false;

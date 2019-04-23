@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using UniwersalneProjekt.Models;
@@ -55,7 +56,10 @@ namespace UniwersalneProjekt.Services
         public async Task<bool> AddCategoryAsync(Category category)
         {
             categories.Add(category);
-
+            foreach(var categoryy in categories)
+            {
+                Debug.WriteLine(categoryy.Name);
+            }
             return await Task.FromResult(true);
         }
 
@@ -84,6 +88,22 @@ namespace UniwersalneProjekt.Services
         public async Task<IEnumerable<Category>> GetCategoriesAsync(bool forceRefresh = false)
         {
             return await Task.FromResult(categories);
+        }
+        public async Task<IEnumerable<Question>> GetQuestionsAsync (bool forceRefresh = false, Category category = null)
+        {
+            return await Task.FromResult(category.Questions);
+        }
+        public async Task<IEnumerable<Answer>> GetAnswersAsync(bool forceRefresh = false, Question question = null)
+        {
+            return await Task.FromResult(question.Answers);
+        }
+        public async Task<Question> GetQuestionAsync(string id, Category category)
+        {
+            return await Task.FromResult(category.Questions.FirstOrDefault(s => s.Id == id));
+        }
+        public async Task<Answer> GetAnswerAsync(string id, Question question)
+        {
+            return await Task.FromResult(question.Answers.FirstOrDefault(s => s.Id == id));
         }
     }
 }

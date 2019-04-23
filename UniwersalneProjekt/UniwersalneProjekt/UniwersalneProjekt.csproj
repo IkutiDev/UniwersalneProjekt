@@ -20,9 +20,6 @@
     <Compile Update="Views\CategoryDetailPage.xaml.cs">
       <DependentUpon>CategoryDetailPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\NewCategoryPage.xaml.cs">
-      <DependentUpon>NewCategoryPage.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -32,7 +29,7 @@
     <EmbeddedResource Update="Views\DoQuiz.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\EditCategory.xaml">
+    <EmbeddedResource Update="Views\QuestionDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

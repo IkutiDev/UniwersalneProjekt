@@ -27,7 +27,7 @@ namespace UniwersalneProjekt.Views
                 switch (id)
                 {
                     case (int)MenuItemType.Add:
-                        MenuPages.Add(id,new NavigationPage(new NewCategoryPage()));
+                        MenuPages.Add(id,new NavigationPage(new AddCategory()));
                         break;
                     case (int)MenuItemType.Browse:
                         MenuPages.Add(id, new NavigationPage(new CategoriesPage()));

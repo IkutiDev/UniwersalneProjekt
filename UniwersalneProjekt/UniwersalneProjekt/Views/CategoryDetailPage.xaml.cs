@@ -13,11 +13,11 @@ namespace UniwersalneProjekt.Views
     {
         CategoryDetailViewModel viewModel;
 
-        public CategoryDetailPage(CategoryDetailViewModel viewModel)
+        public CategoryDetailPage(CategoryDetailViewModel categoryDetailViewModel)
         {
             InitializeComponent();
 
-            BindingContext = this.viewModel = viewModel;
+            BindingContext = viewModel = categoryDetailViewModel;
         }
 
         public CategoryDetailPage()
@@ -32,6 +32,24 @@ namespace UniwersalneProjekt.Views
 
             viewModel = new CategoryDetailViewModel(category);
             BindingContext = viewModel;
+        }
+        async void OnQuestionSelected(object sender, SelectedItemChangedEventArgs args)
+        {
+            var question = args.SelectedItem as Question;
+            if (question == null)
+                return;
+
+            await Navigation.PushAsync(new QuestionDetailPage(new QuestionDetailViewModel(question)));
+
+            // Manually deselect item.
+            QuesionsListView.SelectedItem = null;
+        }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            if (viewModel.Questions.Count == 0)
+                viewModel.LoadQuestionsCommand.Execute(null);
         }
     }
 }
