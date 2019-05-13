@@ -39,7 +39,7 @@ namespace UniwersalneProjekt.Views
             if (question == null)
                 return;
 
-            await Navigation.PushAsync(new QuestionDetailPage(new QuestionDetailViewModel(question)));
+            await Navigation.PushAsync(new QuestionDetailPage(new QuestionDetailViewModel(question,viewModel.Category)));
 
             // Manually deselect item.
             QuesionsListView.SelectedItem = null;
@@ -48,8 +48,21 @@ namespace UniwersalneProjekt.Views
         {
             base.OnAppearing();
 
-            if (viewModel.Questions.Count == 0)
                 viewModel.LoadQuestionsCommand.Execute(null);
         }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new AddQuestion(new QuestionViewModel(viewModel.Category)));
+        }
+        private void Button_Clicked1(object sender, EventArgs e)
+        {
+            var button = sender as Button;
+            var question = button?.BindingContext as Question;
+            var vm = BindingContext as CategoryDetailViewModel;
+            vm?.DeleteQuestionCommand.Execute(question);
+            vm?.LoadQuestionsCommand.Execute(null);
+        }
+
     }
 }

@@ -33,10 +33,12 @@
                                 </DataTrigger>
                             </Image.Triggers>
                             </Image>
+                            <Button VerticalOptions="End" HorizontalOptions="EndAndExpand" Text="Delete" Clicked="Button_Clicked1"></Button>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <Button Text="Dodaj odpowiedź" Clicked="Button_Clicked"></Button>
     </StackLayout>
 </ContentPage>

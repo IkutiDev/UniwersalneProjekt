@@ -12,7 +12,6 @@ namespace UniwersalneProjekt.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Category> DataStore => DependencyService.Get<IDataStore<Category>>() ?? new MockDataStore();
 
         bool isBusy = false;
         public bool IsBusy

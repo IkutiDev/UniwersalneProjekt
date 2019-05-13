@@ -47,7 +47,7 @@
                     <Label.FormattedText>
                         <FormattedString>
                             <FormattedString.Spans>
-                                <Span Text="Aplikacja do tworzenia quizów" />
+                                <Span Text="Aplikacja do tworzenia i rozwiazywania quizów" />
                             </FormattedString.Spans>
                         </FormattedString>
                     </Label.FormattedText>

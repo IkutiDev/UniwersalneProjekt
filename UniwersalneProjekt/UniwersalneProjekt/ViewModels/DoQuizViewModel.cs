@@ -5,15 +5,14 @@ using System.Threading.Tasks;
 using UniwersalneProjekt.Models;
 using UniwersalneProjekt.Services;
 using Xamarin.Forms;
-
 namespace UniwersalneProjekt.ViewModels
 {
-    public class CategoryDetailViewModel : BaseViewModel
+    public class DoQuizViewModel : BaseViewModel
     {
         public ObservableCollection<Question> Questions { get; set; }
         public Category Category { get; set; }
         public Command LoadQuestionsCommand { get; set; }
-        public CategoryDetailViewModel(Category category = null)
+        public DoQuizViewModel(Category category)
         {
             Title = category?.Name;
             Category = category;
@@ -26,20 +25,6 @@ namespace UniwersalneProjekt.ViewModels
                 }
             }
             LoadQuestionsCommand = new Command(() => ExecuteLoadQuestionsCommand());
-        }
-        public Command<Question> DeleteQuestionCommand
-        {
-            get
-            {
-                return new Command<Question>((question) =>
-                {
-                    Category.Questions.Remove(question);
-                    Debug.WriteLine(question.Id);
-                    string fileName = Category.Id + ".xml";
-                    DependencyService.Get<IFileReadWrite>().WriteData(fileName, Category);
-
-                });
-            }
         }
         void ExecuteLoadQuestionsCommand()
         {

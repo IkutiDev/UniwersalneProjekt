@@ -1,32 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="UniwersalneProjekt.Views.CategoryDetailPage"
-             Title="{Binding Title}">
-    <StackLayout Spacing="20" Padding="15">
-        <ListView x:Name="QuesionsListView"
-                ItemsSource="{Binding Questions}"
+             Title="List of Quizes"
+             x:Class="UniwersalneProjekt.Views.CategoriesDoQuizPage"
+             x:Name="BrowseCategoriesDoQuizPage">
+    <StackLayout>
+        <ListView x:Name="CategoriesDoQuizListView"
+                ItemsSource="{Binding Categories}"
                 VerticalOptions="FillAndExpand"
                 HasUnevenRows="true"
-                RefreshCommand="{Binding LoadQuestionsCommand}"
+                RefreshCommand="{Binding LoadCategoriesCommand}"
                 IsPullToRefreshEnabled="true"
                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                 CachingStrategy="RecycleElement"
-                ItemSelected="OnQuestionSelected">
+                ItemSelected="OnCategorySelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Orientation="Horizontal" Padding="10">
-                            <Label Text="{Binding QuestionText}" 
+                            <Label Text="{Binding Name}" 
                                 LineBreakMode="NoWrap" 
                                 Style="{DynamicResource ListItemTextStyle}" 
                                 FontSize="16" />
-                            <Button VerticalOptions="End" HorizontalOptions="EndAndExpand" Text="Delete" Clicked="Button_Clicked1"></Button>
+                            <Button VerticalOptions="End" HorizontalOptions="EndAndExpand" Text="Delete" Clicked="Button_Clicked"></Button>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button Clicked="Button_Clicked" Text="Dodaj Pytanie"></Button>
     </StackLayout>
 </ContentPage>

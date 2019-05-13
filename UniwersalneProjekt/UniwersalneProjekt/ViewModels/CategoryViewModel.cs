@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Text;
 using System.Windows.Input;
 using UniwersalneProjekt.Models;
+using UniwersalneProjekt.Services;
 using UniwersalneProjekt.Validators;
+using UniwersalneProjekt.Views;
 using Xamarin.Forms;
 
 namespace UniwersalneProjekt.ViewModels
@@ -12,7 +15,6 @@ namespace UniwersalneProjekt.ViewModels
     class CategoryViewModel : BaseViewModel
     {
         private string _name;
-
         private string _nameError = "";
         public string Name
         {
@@ -41,34 +43,28 @@ namespace UniwersalneProjekt.ViewModels
         {
             return ValidateName();
         }
-        public ICommand AddCategoryCommand => new Command(AddCategoryAsync);
-        private async void AddCategoryAsync()
+        public ICommand AddCategoryCommand => new Command(AddCategory);
+        private void AddCategory()
         {
-            Debug.WriteLine("Test");
             bool isValid = Validate();
             if (isValid)
             {
-                Category category = new Category
+                Category newCategory = new Category
                 {
                     Id = Guid.NewGuid().ToString(),
                     Name = Name,
-                    Questions=null
+                    Questions = new List<Question>()
                 };
-                var test =await DataStore.AddCategoryAsync(category);
-                Debug.WriteLine(test);
-                var categories = await DataStore.GetCategoriesAsync(true);
-                foreach (var categoryy in categories)
-                {
-                    Debug.WriteLine(categoryy.Name);
-                }
+                string fileName = newCategory.Id + ".xml";
+                DependencyService.Get<IFileReadWrite>().WriteData(fileName, newCategory);
                 ClearData();
             }
         }
 
-        private void ClearData()
+        public void ClearData()
         {
             Name = "";
-            NameError = "";
+            //NameError = "";
         }
 
         public CategoryViewModel(Category category = null)

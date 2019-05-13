@@ -37,8 +37,21 @@ namespace UniwersalneProjekt.Views
         {
             base.OnAppearing();
 
-            if (viewModel.Answers.Count == 0)
+            //if (viewModel.Answers.Count == 0)
                 viewModel.LoadAnswersCommand.Execute(null);
+        }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new AddAnswer(new AnswerViewModel(viewModel.Category,viewModel.Question)));
+        }
+        private void Button_Clicked1(object sender, EventArgs e)
+        {
+            var button = sender as Button;
+            var answer = button?.BindingContext as Answer;
+            var vm = BindingContext as QuestionDetailViewModel;
+            vm?.DeleteAnswerCommand.Execute(answer);
+            vm?.LoadAnswersCommand.Execute(null);
         }
     }
 }

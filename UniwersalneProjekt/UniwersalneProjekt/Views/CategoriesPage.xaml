@@ -18,12 +18,12 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Padding="10">
+                        <StackLayout Orientation="Horizontal" Padding="10">
                             <Label Text="{Binding Name}" 
                                 LineBreakMode="NoWrap" 
                                 Style="{DynamicResource ListItemTextStyle}" 
                                 FontSize="16" />
-
+                            <Button VerticalOptions="End" HorizontalOptions="EndAndExpand" Text="Delete" Clicked="Button_Clicked"></Button>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

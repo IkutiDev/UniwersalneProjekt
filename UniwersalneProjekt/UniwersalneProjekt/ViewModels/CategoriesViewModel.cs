@@ -7,6 +7,7 @@ using Xamarin.Forms;
 
 using UniwersalneProjekt.Models;
 using UniwersalneProjekt.Views;
+using UniwersalneProjekt.Services;
 
 namespace UniwersalneProjekt.ViewModels
 {
@@ -19,10 +20,23 @@ namespace UniwersalneProjekt.ViewModels
         {
             Title = "Browse";
             Categories = new ObservableCollection<Category>();
-            LoadCategoriesCommand = new Command(async () => await ExecuteLoadCategoriesCommand());
+            LoadCategoriesCommand = new Command(() => ExecuteLoadCategoriesCommand());
+            
         }
+        public Command<Category> DeleteCategoryCommand
+        {
+            get
+            {
+                return new Command<Category>((category) =>
+                {
+                    Categories.Remove(category);
+                    Debug.WriteLine(category.Id);
+                    DependencyService.Get<IFileReadWrite>().DeleteFile(category.Id + ".xml");
 
-        async Task ExecuteLoadCategoriesCommand()
+                });
+            }
+        }
+        void ExecuteLoadCategoriesCommand()
         {
             if (IsBusy)
                 return;
@@ -32,7 +46,7 @@ namespace UniwersalneProjekt.ViewModels
             try
             {
                 Categories.Clear();
-                var categories = await DataStore.GetCategoriesAsync(true);
+                var categories = DependencyService.Get<IFileReadWrite>().GetAll();
                 foreach (var category in categories)
                 {
                     Categories.Add(category);

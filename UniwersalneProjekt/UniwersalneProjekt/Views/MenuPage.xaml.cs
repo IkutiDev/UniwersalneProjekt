@@ -20,6 +20,7 @@ namespace UniwersalneProjekt.Views
             {
                 new HomeMenuItem {Id = MenuItemType.Add, Title="Add Category"},
                 new HomeMenuItem {Id = MenuItemType.Browse, Title="Browse" },
+                new HomeMenuItem{Id=MenuItemType.DoQuiz, Title="Do Quiz"},
                 new HomeMenuItem {Id = MenuItemType.About, Title="About" }
             };
 

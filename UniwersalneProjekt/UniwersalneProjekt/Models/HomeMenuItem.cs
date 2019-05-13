@@ -8,6 +8,7 @@ namespace UniwersalneProjekt.Models
     {
         Add,
         Browse,
+        DoQuiz,
         About
     }
     public class HomeMenuItem

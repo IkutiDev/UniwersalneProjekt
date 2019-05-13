@@ -4,13 +4,12 @@
              x:Class="UniwersalneProjekt.Views.AddCategory"
              Title="Add Quiz">
     <ContentPage.Content>
-        <StackLayout Spacing="20" Padding="15">
+            <StackLayout x:Name="MainLayout" Spacing="20" Padding="15">
 
-            <Label Text="Nazwa kategorii:" FontSize="Medium" />
-            <Entry x:Name="Name" Text="{Binding Name}" FontSize="Small"/>
-            <Label TextColor="Red" Text="{Binding NameError}"/>
-            <Button Text="Dodaj" Command="{Binding AddCategoryCommand}"/>
-        </StackLayout>
-        
+                <Label Text="Nazwa kategorii:" FontSize="Medium" />
+                <Entry x:Name="Name" Text="{Binding Name}" FontSize="Small"/>
+                <Label TextColor="Red" Text="{Binding NameError}"/>
+                <Button Text="Dodaj" Command="{Binding AddCategoryCommand}" Clicked="Button_Clicked"/>
+            </StackLayout>
     </ContentPage.Content>
 </ContentPage>
