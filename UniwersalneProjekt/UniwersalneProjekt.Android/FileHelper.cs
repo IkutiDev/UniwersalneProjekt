@@ -22,11 +22,12 @@ namespace UniwersalneProjekt.Droid
                 writer.WriteStartElement("Category");
                 writer.WriteAttributeString("Id", data.Id);
                 writer.WriteAttributeString("Name", data.Name);
-                foreach(Question q in data.Questions)
+                foreach (Question q in data.Questions)
                 {
                     writer.WriteStartElement("Question");
                     writer.WriteAttributeString("Id", q.Id);
                     writer.WriteAttributeString("QuestionText", q.QuestionText);
+                    writer.WriteAttributeString("AnswersType", q.AnswersType.ToString());
                     foreach (Answer a in q.Answers)
                     {
                         writer.WriteStartElement("Answer");
@@ -40,6 +41,7 @@ namespace UniwersalneProjekt.Droid
                 writer.WriteEndElement();
                 writer.WriteEndDocument();
                 writer.Flush();
+                writer.Close();
             }
 
         }
@@ -67,6 +69,10 @@ namespace UniwersalneProjekt.Droid
                     newQuestion.Id = reader.Value;
                     reader.MoveToNextAttribute();
                     newQuestion.QuestionText = reader.Value;
+                    reader.MoveToNextAttribute();
+                    AnswerType answerType;
+                    Enum.TryParse(reader.Value, out answerType);
+                    newQuestion.AnswersType = answerType;
                     newQuestion.Answers = new List<Answer>();
                     newCategory.Questions.Add(newQuestion);
                 }
@@ -82,6 +88,7 @@ namespace UniwersalneProjekt.Droid
                     newCategory.Questions[newCategory.Questions.Count - 1].Answers.Add(newAnswer);
                 }
             }
+            reader.Close();
             return newCategory;
         }
         public void DeleteFile(string filename)

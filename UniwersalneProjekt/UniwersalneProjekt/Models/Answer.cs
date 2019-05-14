@@ -11,5 +11,6 @@ namespace UniwersalneProjekt.Models
         public char AnswerLetter { get; set; }
         public string AnswerText { get; set; }
         public bool IsCorrect { get; set; } = false;
+        public bool Selected { get; set; } = false;
     }
 }

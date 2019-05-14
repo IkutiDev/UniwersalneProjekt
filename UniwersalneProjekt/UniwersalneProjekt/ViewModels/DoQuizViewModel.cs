@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
@@ -11,7 +12,6 @@ namespace UniwersalneProjekt.ViewModels
     {
         public ObservableCollection<Question> Questions { get; set; }
         public Category Category { get; set; }
-        public Command LoadQuestionsCommand { get; set; }
         public DoQuizViewModel(Category category)
         {
             Title = category?.Name;
@@ -24,32 +24,7 @@ namespace UniwersalneProjekt.ViewModels
                     Questions.Add(q);
                 }
             }
-            LoadQuestionsCommand = new Command(() => ExecuteLoadQuestionsCommand());
         }
-        void ExecuteLoadQuestionsCommand()
-        {
-            if (IsBusy)
-                return;
 
-            IsBusy = true;
-
-            try
-            {
-                Questions.Clear();
-                var questions = Category.Questions;
-                foreach (var question in questions)
-                {
-                    Questions.Add(question);
-                }
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
     }
 }
