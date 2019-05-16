@@ -11,12 +11,11 @@
                 RefreshCommand="{Binding LoadAnswersCommand}"
                 IsPullToRefreshEnabled="true"
                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
-                CachingStrategy="RecycleElement"
-                >
+                CachingStrategy="RecycleElement">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Orientation="Horizontal" Padding="10">
+                        <StackLayout Orientation="Horizontal" Padding="10" BackgroundColor="{Binding SelectionColor}">
                             <Label Text="{Binding AnswerLetter}" LineBreakMode="NoWrap" 
                                 Style="{DynamicResource ListItemTextStyle}" 
                                 FontSize="16"/>

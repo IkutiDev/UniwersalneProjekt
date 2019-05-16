@@ -54,9 +54,10 @@ namespace UniwersalneProjekt.Views
                 var answerTextLabel = new Label {  FontSize = 16, HorizontalOptions = LayoutOptions.FillAndExpand };
                 var tapGestureRecognizer = new TapGestureRecognizer();
                 tapGestureRecognizer.Tapped += TapGestureRecognizer_Tapped1;
-                listViewLayout.GestureRecognizers.Add(tapGestureRecognizer);
+               listViewLayout.GestureRecognizers.Add(tapGestureRecognizer);
                 letterLabel.SetBinding(Label.TextProperty, "AnswerLetter");
                 answerTextLabel.SetBinding(Label.TextProperty, "AnswerText");
+                
                 listViewLayout.Children.Add(letterLabel);
                 listViewLayout.Children.Add(answerTextLabel);
                 var vc = new ViewCell { View=listViewLayout};
@@ -117,7 +118,8 @@ namespace UniwersalneProjekt.Views
                 Content = mainLayout
             };
         }
-        async void OnAnswerSelected(object sender, SelectedItemChangedEventArgs args)
+
+        void OnAnswerSelected(object sender, SelectedItemChangedEventArgs args)
         {
             if (args.SelectedItem != null)
             {
@@ -132,7 +134,6 @@ namespace UniwersalneProjekt.Views
                 {
                     a.Selected = false;
                 }
-                Debug.WriteLine(a.Selected);
             }
         }
         private void TapGestureRecognizer_Tapped1(object sender, EventArgs e)

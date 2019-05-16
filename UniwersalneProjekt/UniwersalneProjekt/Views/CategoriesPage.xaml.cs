@@ -10,6 +10,7 @@ using Xamarin.Forms.Xaml;
 using UniwersalneProjekt.Models;
 using UniwersalneProjekt.Views;
 using UniwersalneProjekt.ViewModels;
+using System.Diagnostics;
 
 namespace UniwersalneProjekt.Views
 {
@@ -30,7 +31,7 @@ namespace UniwersalneProjekt.Views
             var category = args.SelectedItem as Category;
             if (category == null)
                 return;
-
+            Debug.WriteLine(category.Id);
             await Navigation.PushAsync(new CategoryDetailPage(new CategoryDetailViewModel(category)));
 
             // Manually deselect item.

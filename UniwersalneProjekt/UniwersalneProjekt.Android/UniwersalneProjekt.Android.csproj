@@ -102,5 +102,9 @@
       <Name>UniwersalneProjekt</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Check_mark.png" />
+    <AndroidResource Include="Resources\drawable\quiz_logo.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

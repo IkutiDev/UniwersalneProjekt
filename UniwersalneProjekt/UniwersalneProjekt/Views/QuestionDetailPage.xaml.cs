@@ -40,7 +40,6 @@ namespace UniwersalneProjekt.Views
             //if (viewModel.Answers.Count == 0)
                 viewModel.LoadAnswersCommand.Execute(null);
         }
-
         private void Button_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new AddAnswer(new AnswerViewModel(viewModel.Category,viewModel.Question)));
