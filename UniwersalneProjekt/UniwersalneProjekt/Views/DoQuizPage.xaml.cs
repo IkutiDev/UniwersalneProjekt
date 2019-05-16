@@ -7,6 +7,7 @@ using UniwersalneProjekt.Models;
 using UniwersalneProjekt.ViewModels;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace UniwersalneProjekt.Views
 {
@@ -46,10 +47,11 @@ namespace UniwersalneProjekt.Views
                 {
                     Orientation = StackOrientation.Horizontal,
                     Padding = 10,
-                    HorizontalOptions=LayoutOptions.FillAndExpand
+                    HorizontalOptions=LayoutOptions.FillAndExpand,
+                    VerticalOptions =LayoutOptions.FillAndExpand
                 };
-                var letterLabel = new Label {  FontSize=16};
-                var answerTextLabel = new Label {  FontSize = 16 };
+                var letterLabel = new Label {  FontSize=16, HorizontalOptions = LayoutOptions.FillAndExpand };
+                var answerTextLabel = new Label {  FontSize = 16, HorizontalOptions = LayoutOptions.FillAndExpand };
                 var tapGestureRecognizer = new TapGestureRecognizer();
                 tapGestureRecognizer.Tapped += TapGestureRecognizer_Tapped1;
                 listViewLayout.GestureRecognizers.Add(tapGestureRecognizer);
@@ -57,10 +59,7 @@ namespace UniwersalneProjekt.Views
                 answerTextLabel.SetBinding(Label.TextProperty, "AnswerText");
                 listViewLayout.Children.Add(letterLabel);
                 listViewLayout.Children.Add(answerTextLabel);
-                listViewLayout.BackgroundColor = Color.Green;
                 var vc = new ViewCell { View=listViewLayout};
-                //vc.View.BackgroundColor = Color.Wheat;
-                vc.Tapped+= TapGestureRecognizer_Tapped;
                 return vc;
 
             });
@@ -95,7 +94,7 @@ namespace UniwersalneProjekt.Views
                         FontSize = 16
                     };
                     layout.Children.Add(label);
-                    listView = new ListView();
+                    listView = new ListView { HorizontalOptions = LayoutOptions.FillAndExpand };
                     listView.ItemsSource = q.Answers;
                     int i = q.Answers.Count;
                     int heightRowList = 45;
@@ -128,28 +127,12 @@ namespace UniwersalneProjekt.Views
                 if (a.Selected == false)
                 {
                     a.Selected = true;
-                    
                 }
                 else
                 {
                     a.Selected = false;
                 }
                 Debug.WriteLine(a.Selected);
-            }
-        }
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
-        {
-            var vc = sender as ViewCell;
-            if (vc.View.BackgroundColor == Color.Default)
-            {
-                //vc.View.BackgroundColor = Color.FromRgb(0,100,0);
-                vc.View.BackgroundColor = Color.Green;
-                Debug.WriteLine(vc.View.BackgroundColor);
-            }
-            else
-            {
-                vc.View.BackgroundColor = Color.Default;
-                Debug.WriteLine(vc.View.BackgroundColor);
             }
         }
         private void TapGestureRecognizer_Tapped1(object sender, EventArgs e)
@@ -166,19 +149,9 @@ namespace UniwersalneProjekt.Views
                 Debug.WriteLine(layout.BackgroundColor);
             }
         }
-        private void Button_Clicked1(object sender, EventArgs e)
+        async private void Button_Clicked1(object sender, EventArgs e)
         {
-            var button = sender as Button;
-            if (button.BackgroundColor == Color.Green)
-            {
-                button.BackgroundColor = Color.Default;
-                button.BorderColor = Color.Default;
-            }
-            else
-            {
-                button.BackgroundColor = Color.Green;
-                button.BorderColor = Color.Green;
-            }
+            await Navigation.PushAsync(new ResultPage(viewModel?.Questions));
         }
     }
 }
